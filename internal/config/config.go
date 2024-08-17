@@ -1,8 +1,8 @@
 package config
 
 import (
+	"avito-backend-assignment/pkg/logger"
 	"github.com/ilyakaznacheev/cleanenv"
-	"log/slog"
 )
 
 type config struct {
@@ -33,8 +33,7 @@ var Config config
 func (c *config) MustInitializeConfig() {
 	err := cleanenv.ReadConfig("./internal/config/config.yml", &Config)
 	if err != nil {
-		slog.Error("failed to parse env")
-		panic(err)
+		logger.ZeroLogger.Fatal().Msgf("config -> MustInitializeConfig -> cleanenv.ReadConfig: %v", err)
 	}
 
 }

@@ -5,11 +5,11 @@ host: localhost
 port: 8080
 
 # database
-db_host: postgres
-db_port: 5432
+db_host: localhost
+db_port: 5433
 db_user: postgres
-db_password: password
-db_name: avito-backend-assignment
+db_password: 0
+db_name: avito_backend_assignment
 
 # redis
 redis_host: redis

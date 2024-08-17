@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"github.com/jmoiron/sqlx"
 	"time"
+
+	_ "github.com/lib/pq"
 )
 
 func SetupDefaultPostgreConnection() (*sqlx.DB, error) {
@@ -15,7 +17,7 @@ func SetupDefaultPostgreConnection() (*sqlx.DB, error) {
 		config.Config.DBPassword,
 		config.Config.DBHost,
 		config.Config.DBPort,
-		config.Config.DBHost,
+		config.Config.DBName,
 	)
 
 	defaultDriverOptions := postgre.NewSqlxDriverOptions(
