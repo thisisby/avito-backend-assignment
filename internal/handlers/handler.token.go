@@ -28,7 +28,7 @@ func (h *TokenHandler) Generate(ctx echo.Context) error {
 		return NewErrorResponse(ctx, http.StatusBadRequest, err.Error())
 	}
 
-	token, statusCode, err := h.tokenService.Generate(generateTokenRequest)
+	token, statusCode, err := h.tokenService.Generate(generateTokenRequest, ctx.Request().URL.Host, ctx.Request().UserAgent())
 	if err != nil {
 		logger.ZeroLogger.Error().Msg(err.Error())
 		return NewErrorResponse(ctx, statusCode, err.Error())

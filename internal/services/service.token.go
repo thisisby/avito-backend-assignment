@@ -26,7 +26,7 @@ type TokenPayload struct {
 	Token string
 }
 
-func (s *TokenService) Generate(generateTokenRequest models.GenerateTokenRequest) (TokenPayload, int, error) {
+func (s *TokenService) Generate(generateTokenRequest models.GenerateTokenRequest, url, userAgent string) (TokenPayload, int, error) {
 	var logModel models.Log
 	token, err := helpers.GenerateToken(constants.MapIntToToken[generateTokenRequest.Type], generateTokenRequest.Length)
 	if err != nil {
@@ -39,8 +39,8 @@ func (s *TokenService) Generate(generateTokenRequest models.GenerateTokenRequest
 	// TODO get actual user agent and url
 	logModel = models.Log{
 		Token:     token,
-		UserAgent: "agent",
-		Url:       "url",
+		UserAgent: userAgent,
+		Url:       url,
 	}
 
 	id, err := s.logRepository.Save(logModel)
